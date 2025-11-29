@@ -86,14 +86,8 @@ function Home() {
   if (loading) return <div>Carregando MovieLab..</div>;
 
   return (
-    <div style={{ padding: 20 }}>
-      <div
-        style={{
-          borderBottom: "2px solid #333",
-          paddingBottom: 20,
-          marginBottom: 20,
-        }}
-      >
+    <div>
+      <div>
         <form onSubmit={handleSearch}>
           <input
             type="text"
@@ -105,14 +99,13 @@ function Home() {
         </form>
 
         {heroMovie && (
-          <div style={{ marginTop: 20 }}>
+          <div>
             <h1>🔥 Destaque da Semana: {heroMovie.title}</h1>
             <img
               src={`${import.meta.env.VITE_API_IMAGE_URL}/original/${
                 heroMovie.backdrop_path
               }`}
               alt={heroMovie.title}
-              style={{ width: "100%", maxWidth: 600 }}
             />
             <p>{heroMovie.overview}</p>
             <Link to={`/filme/${heroMovie.id}`}>Ver Detalhes</Link>
@@ -120,17 +113,16 @@ function Home() {
         )}
       </div>
 
-      <section style={{ marginBottom: 40 }}>
+      <section>
         <h2>📈 Top 10 da Semana</h2>
-        <div style={{ display: "flex", gap: 10, overflowX: "scroll" }}>
+        <div>
           {topFilms.map((film) => (
-            <div key={film.id} style={{ minWidth: 150 }}>
+            <div key={film.id}>
               <img
                 src={`${import.meta.env.VITE_API_IMAGE_URL}/w200/${
                   film.poster_path
                 }`}
                 alt={film.title}
-                style={{ width: "100%" }}
               />
               <p>{film.title}</p>
             </div>
@@ -138,37 +130,27 @@ function Home() {
         </div>
       </section>
 
-      <section style={{ marginBottom: 40 }}>
+      <section>
         <h2>📂 Navegue pelas Categorias</h2>
-        <div style={{ display: "flex", gap: 10, flexWrap: "wrap" }}>
+        <div>
           {categories.map((cat) => (
-            <Link
-              key={cat.id}
-              to={`/categoria/${cat.id}`}
-              style={{
-                padding: 10,
-                background: "#333",
-                color: "#fff",
-                textDecoration: "none",
-              }}
-            >
+            <Link key={cat.id} to={`/categoria/${cat.id}`}>
               {cat.name}
             </Link>
           ))}
         </div>
       </section>
 
-      <section style={{ marginBottom: 40 }}>
+      <section>
         <h2>📅 Que estão por vir...</h2>
-        <div style={{ display: "flex", gap: 10, overflowX: "scroll" }}>
+        <div>
           {upcoming.map((film) => (
-            <div key={film.id} style={{ minWidth: 150 }}>
+            <div key={film.id}>
               <img
                 src={`${import.meta.env.VITE_API_IMAGE_URL}/w200/${
                   film.poster_path
                 }`}
                 alt={film.title}
-                style={{ width: "100%" }}
               />
               <p>{film.title}</p>
             </div>
@@ -177,20 +159,14 @@ function Home() {
       </section>
 
       {featuredActor && (
-        <section style={{ marginBottom: 40, background: "#222", padding: 20 }}>
+        <section>
           <h2>⭐ Ator Destaque</h2>
-          <div style={{ display: "flex", alignItems: "center", gap: 20 }}>
+          <div>
             <img
               src={`${import.meta.env.VITE_API_IMAGE_URL}/w200/${
                 featuredActor.profile_path
               }`}
               alt={featuredActor.name}
-              style={{
-                borderRadius: 100,
-                width: 100,
-                height: 100,
-                objectFit: "cover",
-              }}
             />
             <div>
               <h3>{featuredActor.name}</h3>
@@ -202,19 +178,12 @@ function Home() {
         </section>
       )}
 
-      <section style={{ marginBottom: 40 }}>
+      <section>
         <h2>🏆 Filmes mais bem avaliados do ano</h2>
-        <div style={{ display: "flex", gap: 20, justifyContent: "center" }}>
+        <div>
           {bestOfYear.map((film, index) => (
-            <div
-              key={film.id}
-              style={{
-                textAlign: "center",
-                border: "1px solid gold",
-                padding: 10,
-              }}
-            >
-              <h1 style={{ fontSize: 50 }}>#{index + 1}</h1>
+            <div key={film.id}>
+              <h1>#{index + 1}</h1>
               <img
                 src={`${import.meta.env.VITE_API_IMAGE_URL}/w200/${
                   film.poster_path

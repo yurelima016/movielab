@@ -94,46 +94,40 @@ function Film() {
 
   if (loading) {
     return (
-      <div style={{ padding: 20 }}>
+      <div>
         <h2>Carregando detalhes...</h2>
       </div>
     );
   }
 
   return (
-    <div style={{ padding: 20, maxWidth: 800, margin: "0 auto" }}>
+    <div>
       <img
         src={`${import.meta.env.VITE_API_IMAGE_URL}/original/${
           film.backdrop_path
         }`}
         alt={film.title}
-        style={{ width: "100%", borderRadius: 10, marginBottom: 20 }}
       />
 
       <h1>{film.title}</h1>
-      <p style={{ fontStyle: "italic", color: "#BD8C34" }}>{film.tagline}</p>
+      <p>{film.tagline}</p>
 
-      <hr style={{ margin: "20px 0" }} />
+      <hr />
 
-      <button
-        onClick={saveFilm}
-        style={{ padding: "10px 20px", cursor: "pointer", fontSize: 16 }}
-      >
-        ❤️ Salvar nos Favoritos
-      </button>
+      <button onClick={saveFilm}>❤️ Salvar nos Favoritos</button>
 
       <br />
       <br />
 
       <h3>Sinopse</h3>
-      <p style={{ lineHeight: 1.5 }}>{film.overview}</p>
+      <p>{film.overview}</p>
 
       <p>
         <strong>Nota:</strong> {film.vote_average?.toFixed(1)} / 10
       </p>
 
       {trailer && (
-        <div style={{ marginTop: 30 }}>
+        <div>
           <h3>Trailer Oficial</h3>
           <iframe
             width="100%"
@@ -143,41 +137,27 @@ function Film() {
             frameBorder="0"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
             allowFullScreen
-            style={{ borderRadius: 10 }}
           ></iframe>
         </div>
       )}
 
-      <div style={{ marginTop: 30 }}>
+      <div>
         <h3>Elenco Principal</h3>
-        <div style={{ display: "flex", gap: 15, flexWrap: "wrap" }}>
+        <div>
           {cast.map((actor) => (
-            <div key={actor.id} style={{ width: 100, textAlign: "center" }}>
+            <div key={actor.id}>
               {actor.profile_path ? (
                 <img
                   src={`${import.meta.env.VITE_API_IMAGE_URL}/w200/${
                     actor.profile_path
                   }`}
                   alt={actor.name}
-                  style={{
-                    width: "100%",
-                    borderRadius: 50,
-                    height: 100,
-                    objectFit: "cover",
-                  }}
                 />
               ) : (
-                <div
-                  style={{
-                    width: 100,
-                    height: 100,
-                    background: "#333",
-                    borderRadius: 50,
-                  }}
-                ></div>
+                <div></div>
               )}
-              <p style={{ fontSize: 12, marginTop: 5 }}>{actor.name}</p>
-              <p style={{ fontSize: 10, color: "#aaa" }}>{actor.character}</p>
+              <p>{actor.name}</p>
+              <p>{actor.character}</p>
             </div>
           ))}
         </div>

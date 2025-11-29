@@ -48,14 +48,14 @@ function Category() {
 
   if (loading) {
     return (
-      <div style={{ padding: 20 }}>
+      <div>
         <h2>Carregando filmes...</h2>
       </div>
     );
   }
 
   return (
-    <div style={{ padding: 20 }}>
+    <div>
       <h1>
         {categoryName ? `Filmes de ${categoryName}` : `Categoria ID: ${id}`}
       </h1>
@@ -66,7 +66,7 @@ function Category() {
 
       <ul>
         {films.map((film) => (
-          <li key={film.id} style={{ marginBottom: 20 }}>
+          <li key={film.id}>
             <strong>{film.title}</strong>
             <br />
             <Link to={`/filme/${film.id}`}>Ver Detalhes</Link>

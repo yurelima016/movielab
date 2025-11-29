@@ -49,32 +49,29 @@ function Films() {
 
   if (loading) {
     return (
-      <div style={{ padding: 20 }}>
+      <div>
         <h2>Carregando catálogo...</h2>
       </div>
     );
   }
 
   return (
-    <div style={{ padding: 20 }}>
+    <div>
       <h1>{query ? `Resultados para: ${query}` : "Catálogo Completo"}</h1>
 
-      <form onSubmit={handleSubmit} style={{ marginBottom: 30 }}>
+      <form onSubmit={handleSubmit}>
         <input
           type="text"
           placeholder="Busque um filme..."
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
-          style={{ padding: 8, fontSize: 16 }}
         />
-        <button type="submit" style={{ padding: 8, marginLeft: 5 }}>
-          Buscar
-        </button>
+        <button type="submit">Buscar</button>
       </form>
 
       <ul>
         {films.map((filme) => (
-          <li key={filme.id} style={{ marginBottom: 20 }}>
+          <li key={filme.id}>
             <strong>{filme.title}</strong>
             {filme.release_date && (
               <span> ({filme.release_date.substring(0, 4)})</span>

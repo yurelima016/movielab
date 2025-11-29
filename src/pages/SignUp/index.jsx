@@ -17,18 +17,10 @@ function SignUp() {
   }
 
   return (
-    <div style={{ padding: 20 }}>
+    <div>
       <h1>Cadastrar Conta</h1>
 
-      <form
-        onSubmit={handleSubmit}
-        style={{
-          display: "flex",
-          flexDirection: "column",
-          maxWidth: 300,
-          gap: 10,
-        }}
-      >
+      <form onSubmit={handleSubmit}>
         <input
           type="text"
           placeholder="Seu nome"

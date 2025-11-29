@@ -43,31 +43,21 @@ function Favorites() {
 
   if (loadingAuth) {
     return (
-      <div style={{ padding: 20 }}>
+      <div>
         <h2>Carregando seus dados...</h2>
       </div>
     );
   }
 
   return (
-    <div style={{ padding: 20 }}>
+    <div>
       <h1>Meus Filmes Favoritos</h1>
 
       {films.length === 0 && <span>Você não possui nenhum filme salvo 😢</span>}
 
-      <ul style={{ listStyle: "none", marginTop: 20 }}>
+      <ul>
         {films.map((item) => (
-          <li
-            key={item.id}
-            style={{
-              marginBottom: 20,
-              border: "1px solid #333",
-              padding: 10,
-              display: "flex",
-              alignItems: "center",
-              gap: 20,
-            }}
-          >
+          <li key={item.id}>
             <img
               src={`${import.meta.env.VITE_API_IMAGE_URL}/w200/${
                 item.poster_path
@@ -79,10 +69,8 @@ function Favorites() {
               <h3>{item.title}</h3>
               <p>Nota: {item.vote_average}</p>
 
-              <div style={{ marginTop: 10 }}>
-                <Link to={`/filme/${item.id}`} style={{ marginRight: 10 }}>
-                  Ver Detalhes
-                </Link>
+              <div>
+                <Link to={`/filme/${item.id}`}>Ver Detalhes</Link>
 
                 <button onClick={() => deleteMovie(item)}>Excluir</button>
               </div>

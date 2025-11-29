@@ -15,18 +15,10 @@ function SignIn() {
   }
 
   return (
-    <div style={{ padding: 20 }}>
+    <div>
       <h1>Entrar no MovieLab</h1>
 
-      <form
-        onSubmit={handleLogin}
-        style={{
-          display: "flex",
-          flexDirection: "column",
-          maxWidth: 300,
-          gap: 10,
-        }}
-      >
+      <form onSubmit={handleLogin}>
         <input
           type="text"
           placeholder="email@email.com"
