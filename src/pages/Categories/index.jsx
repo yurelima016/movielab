@@ -32,23 +32,14 @@ function Categorias() {
   }
 
   return (
-    <div style={{ padding: "20px" }}>
+    <div>
       <h1>Categorias</h1>
 
-      <ul style={{ listStyle: "none" }}>
+      <ul>
         {genres.map((genero) => {
           return (
-            <li key={genero.id} style={{ marginBottom: "10px" }}>
-              <Link
-                to={`/categoria/${genero.id}`}
-                style={{
-                  color: "#BD8C34",
-                  textDecoration: "none",
-                  fontSize: "18px",
-                }}
-              >
-                {genero.name}
-              </Link>
+            <li key={genero.id}>
+              <Link to={`/categoria/${genero.id}`}>{genero.name}</Link>
             </li>
           );
         })}

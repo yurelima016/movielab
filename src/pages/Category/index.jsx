@@ -9,26 +9,41 @@ function Category() {
   const [categoryName, setCategoryName] = useState("");
 
   useEffect(() => {
-    async function loadFilms() {
+    async function loadData() {
       setLoading(true);
       try {
-        const response = await api.get("discover/movie", {
-          params: {
-            api_key: import.meta.env.VITE_API_KEY,
-            language: "pt-BR",
-            page: 1,
-            with_genres: id,
-          },
-        });
+        const [filmsResponse, genresResponse] = await Promise.all([
+          api.get("discover/movie", {
+            params: {
+              api_key: import.meta.env.VITE_API_KEY,
+              language: "pt-BR",
+              page: 1,
+              with_genres: id,
+            },
+          }),
+          api.get("genre/movie/list", {
+            params: {
+              api_key: import.meta.env.VITE_API_KEY,
+              language: "pt-BR",
+            },
+          }),
+        ]);
 
-        setFilms(response.data.results);
+        setFilms(filmsResponse.data.results);
+        const genresList = genresResponse.data.genres;
+        const genreFound = genresList.find((g) => g.id.toString() === id);
+
+        if (genreFound) {
+          setCategoryName(genreFound.name);
+        }
+
         setLoading(false);
       } catch (error) {
-        console.log("ERRO AO BUSCAR FILMES POR CATEGORIA", error);
+        console.log("ERRO AO CARREGAR CATEGORIA", error);
         setLoading(false);
       }
     }
-    loadFilms();
+    loadData();
   }, [id]);
 
   if (loading) {
@@ -41,18 +56,20 @@ function Category() {
 
   return (
     <div style={{ padding: 20 }}>
-      <h1>Filmes da Categoria ID: {id}</h1>
+      <h1>
+        {categoryName ? `Filmes de ${categoryName}` : `Categoria ID: ${id}`}
+      </h1>
 
       <Link to="/categorias">Voltar para Categorias</Link>
       <br />
       <br />
 
       <ul>
-        {films.map((filme) => (
-          <li key={filme.id} style={{ marginBottom: 20 }}>
-            <strong>{filme.title}</strong>
+        {films.map((film) => (
+          <li key={film.id} style={{ marginBottom: 20 }}>
+            <strong>{film.title}</strong>
             <br />
-            <Link to={`/filme/${filme.id}`}>Ver Detalhes</Link>
+            <Link to={`/filme/${film.id}`}>Ver Detalhes</Link>
           </li>
         ))}
       </ul>
