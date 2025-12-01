@@ -1,6 +1,8 @@
 import { Link, useLocation } from "react-router-dom";
 import { useContext } from "react";
 import { AuthContext } from "../../contexts/auth";
+import styles from "./Header.module.css";
+import logoImg from "../../assets/movielab-logo.svg";
 
 function Header() {
   const { signed, user, signOutUser } = useContext(AuthContext);
@@ -11,27 +13,48 @@ function Header() {
   }
 
   return (
-    <header>
-      <Link to="/">MovieLab 🎬</Link>
+    <header className={styles.header}>
+      <Link to="/" className={styles.logoContainer}>
+        <img src={logoImg} alt="MovieLab" className={styles.logoImg} />
+      </Link>
 
-      <div>
-        <Link to="/filmes">Catálogo</Link>
-        <Link to="/categorias">Categorias</Link>
+      <nav className={styles.nav}>
+        <Link to="/filmes" className={styles.link}>
+          Catálogo
+        </Link>
+        <Link to="/categorias" className={styles.link}>
+          Categorias
+        </Link>
 
         {signed ? (
-          // SE ESTIVER LOGADO:
-          <div>
-            <Link to="/favoritos">Meus Favoritos</Link>
+          <>
+            <Link
+              to="/favoritos"
+              className={`${styles.link} ${styles.favLink}`}
+            >
+              ♥ Meus Favoritos
+            </Link>
 
-            <span>{user?.name ? user.name.split(" ")[0] : "Visitante"}</span>
-
-            <button onClick={signOutUser}>Sair</button>
-          </div>
+            <div className={styles.userArea}>
+              <span className={styles.userName}>
+                Olá,{" "}
+                <strong>
+                  {user?.name ? user.name.split(" ")[0] : "Visitante"}
+                </strong>
+              </span>
+              <button onClick={signOutUser} className={styles.btnSair}>
+                SAIR
+              </button>
+            </div>
+          </>
         ) : (
-          // SE NÃO ESTIVER LOGADO:
-          <Link to="/login">Entrar</Link>
+          <div className={styles.userArea} style={{ border: "none" }}>
+            <Link to="/login" className={styles.btnEntrar}>
+              Entrar
+            </Link>
+          </div>
         )}
-      </div>
+      </nav>
     </header>
   );
 }

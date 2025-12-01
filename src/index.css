@@ -1,0 +1,70 @@
+:root {
+  /* Colors */
+  --bg-main: #1a1a1a;
+  --bg-card: #3b3f45;
+  --bg-input: #3f2615;
+
+  --text-primary: #f2eee8;
+  --text-secondary: #bd8c34;
+
+  --accent-red: #832613;
+  --accent-green: #2f3a2e;
+  --accent-teal: #25494d;
+
+  /* --- Fonts --- */
+  --font-display: "Candal", sans-serif;
+  --font-ui: "Montserrat", sans-serif;
+  --font-body: "Merriweather", serif;
+  --font-meta: "Josefin Sans", sans-serif;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  outline: none;
+}
+
+body {
+  background-color: var(--bg-main);
+  color: var(--text-primary);
+  font-family: var(--font-ui);
+  -webkit-font-smoothing: antialiased;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+  transition: 0.3s;
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  transition: 0.3s;
+  font-family: var(--font-ui);
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--font-display);
+  font-weight: 400;
+  letter-spacing: 1px;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg-main);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--bg-card);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--text-secondary);
+}
